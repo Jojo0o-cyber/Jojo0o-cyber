@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Bruxelle 💖</title>
+    <style>
+        :root {
+            --pink: #ffd1dc;
+            --peach: #ffdab9;
+            --lavender: #e6e6fa;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, var(--lavender), var(--pink));
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .name-input {
+            padding: 10px 20px;
+            border: 2px solid var(--pink);
+            border-radius: 25px;
+            font-size: 1rem;
+            width: 80%;
+            margin: 20px 0;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .name-input:focus {
+            border-color: var(--lavender);
+            box-shadow: 0 0 10px rgba(230, 230, 250, 0.5);
+        }
+
+        .button {
+            background: var(--pink);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+        }
+
+        .button:hover {
+            background: var(--peach);
+            transform: scale(1.05);
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💖 Hello Bruxelle 💖</h1>
+        <input type="text" class="name-input" placeholder="Enter your name (hint: Brux)..." id="nameInput">
+        <div id="welcomeMessage" class="message"></div>
+        <button class="button" id="specialButton">Tap Me 💌</button>
+        <div id="specialMessage" class="message"></div>
+        <button class="button" id="birthdayButton" style="background: var(--lavender);">Birthday Wish 🎂</button>
+        <div id="birthdayMessage" class="message"></div>
+    </div>
+
+    <script>
+        const specialName = 'Bruxelle'; // Customized name
+        const hearts = ['💖', '💝', '💕', '💗', '💓', '💘', '💞', '💟'];
+        const today = new Date();
+        const birthdayDate = new Date('2005-08-13'); // Replace with actual birthday
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        setInterval(createHeart, 1000);
+
+        document.getElementById('nameInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                const name = this.value.trim();
+                const welcomeMessage = document.getElementById('welcomeMessage');
+                
+                if (name.toLowerCase() === specialName.toLowerCase()) {
+                    const isBirthday = today.getMonth() === birthdayDate.getMonth() && 
+                                      today.getDate() === birthdayDate.getDate();
+                    
+                    welcomeMessage.textContent = isBirthday 
+                        ? `Happy Birthday ${specialName} 🎂! You light up my world with your smile! 💝` 
+                        : `Happy Birthday ${specialName} 💖, you make my heart smile! You're my everything! 💫`;
+                } else {
+                    welcomeMessage.textContent = 'Hi there! 💌';
+                }
+                
+                welcomeMessage.classList.add('show');
+                welcomeMessage.style.animation = 'bounce 1s ease';
+            }
+        });
+
+        document.getElementById('specialButton').addEventListener('click', function() {
+            const specialMessage = document.getElementById('specialMessage');
+            const messages = [
+                "You're my favorite person in the whole world 😘",
+                "Every moment with you is magical ✨",
+                "You make my heart skip a beat 💓",
+                "You're the sweetest thing in my life 🍯",
+                "Your smile brightens up my darkest days 🌟",
+                "You're the missing piece to my puzzle 🧩",
+                "My heart beats only for you 💝",
+                "You're my sunshine on a cloudy day ☀️",
+                "Life is beautiful because you're in it 🌹",
+                "You're the first thing I think about each morning 🌅",
+                "Your love is my greatest blessing 🙏",
+                "Every day with you feels like Valentine's Day 💘",
+                "You're not just my love, you're my best friend 💑",
+                "I fall in love with you more each day 💞",
+                "You're the reason for my happiness 😊",
+                "My love for you grows stronger every moment 🌱",
+                "You're my dream come true 💫",
+                "Forever yours, today and always 💖",
+                "You make my life complete 🎯",
+                "With you, every day is special ✨"
+            ];
+            
+            specialMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+            specialMessage.classList.add('show');
+            
+            // Create extra hearts for button click
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        });
+        
+        document.getElementById('birthdayButton').addEventListener('click', function() {
+            const birthdayMessage = document.getElementById('birthdayMessage');
+            const birthdayMessages = [
+                `✨🎂 Happy Birthday, ${specialName}! 🎂✨\nOn this special day, I want you to know that you're the most amazing person in my life. Your smile lights up my world, and your love fills my heart with joy. May this year bring you all the happiness, success, and love you deserve. I'm so grateful to celebrate another year of your beautiful life. You are my everything! 💖🎉`,
+                `🎉 Happy Birthday to my beautiful ${specialName}! 🎉\nToday is all about celebrating the incredible person you are! Your kindness, strength, and love inspire me every day. I cherish every moment we spend together and look forward to creating countless more memories. May your birthday be as wonderful as you are! 💝🎂`,
+                `💫 To my dearest ${specialName} on your birthday 💫\nWords cannot express how much you mean to me. Your birthday is the perfect time to celebrate the amazing person you are and all the joy you bring to my life. May your day be filled with laughter, love, and unforgettable moments. You deserve the world and more! 🎁💕`
+            ];
+            
+            // Display a special birthday message with line breaks
+            const message = birthdayMessages[Math.floor(Math.random() * birthdayMessages.length)];
+            birthdayMessage.innerHTML = message.replace('\n', '<br><br>');
+            birthdayMessage.classList.add('show');
+            
+            // Create a burst of hearts for birthday button click
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+            
+            // Add a special animation to the page
+            document.body.style.animation = 'none';
+            setTimeout(() => {
+                document.body.style.animation = 'bounce 1s ease';
+            }, 10);
+        });
+    </script>
+</body>
+</html>
