@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You 💖</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe6f0, #ffd6e0);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #ff4d88;
+    }
+    h1 {
+      font-size: 2em;
+      animation: bounce 1.5s infinite;
+    }
+    button {
+      background-color: #ff99bb;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #ff4d88;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    #hiddenMessage {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #d6336c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hi Love 💖</h1>
+  <p>You make my heart smile every day! 😊</p>
+  <button onclick="document.getElementById('hiddenMessage').style.display='block'">
+    Tap Me 💌
+  </button>
+  <div id="hiddenMessage">
+    You’re my favorite person in the whole world 😘
+  </div>
+</body>
+</html>
